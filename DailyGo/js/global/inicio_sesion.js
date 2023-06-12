@@ -71,6 +71,11 @@ function peticionEntrar() {
 
         let direccionServer = "";
 
+        if(correo.value = "admin@dailygo.com"){
+            msgIncorrecto.setAttribute("class", "flex");
+            return true;
+        }
+
         if (validarCorreo() && validarContrasena()) {
 
             xhrEntrar.onreadystatechange = respuestaEntrar;
