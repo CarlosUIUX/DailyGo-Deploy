@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyGo | Pedidos ultrarrápidos</title>
+    <script src="../../styles/tailwind.js"></script>
+    <script src="../../js/usuarios/gestion_sesiones.js"></script>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="shortcut icon" href="../../assets/svg/favicon.svg" type="image/x-icon">
+</head>
+
+<body class="font-medium text-blue-800 bg-blue-100/5 pb-24">
+    <!--NAVBAR-->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between">
+                <a href="inicio.php" class="flex items-center py-5 px-2">
+                    <img src="../../assets/svg/logo.svg" alt="DailyGo" width="110">
+                </a>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="inicio.php#info-ayuda">Ayuda</a>
+                    <a href="promociones.html">Promociones</a>
+                    <a href="pedidos.html">Mis Pedidos</a>
+                    <a href="perfil.html">Mi Perfil</a>
+                </div>
+
+
+                <!-- Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class=" w-6 h-6" x-show="!showMenu" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú móvil -->
+        <div class="hidden mobile-menu">
+            <div class="flex flex-col justify-center items-center">
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="inicio.php#info-ayuda">Ayuda</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="promociones.html">Promociones</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="pedidos.html">Mis Pedidos</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="perfil.html">Mi Perfil</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24">
+        <div class="container mx-auto p-5">
+            <h3 class="font-bold">Resumen de compra</h3>
+            <hr class="w-full my-2 mb-5">
+            <div class="grid grid-cols-6 gap-3">
+
+                <div class="col-span-6 lg:col-span-4 md:col-span-4 flex flex-col gap-3">
+                    <!--Tabla productos-->
+                    <div class="gap-3 bg-white p-5 rounded-lg shadow-sm border flex flex-col">
+                        <h4 class="font-bold">Lista de productos</h4>
+                        <hr class="w-full mb-3">
+                        <div class="overflow-x-auto">
+                            <div class="inline-block min-w-full align-middle">
+                                <div class="overflow-hidden border border-blue-100 md:rounded-lg">
+                                    <table class="min-w-full divide-y divide-blue-100">
+                                        <thead class="bg-blue-100/20 text-left">
+                                            <tr>
+                                                <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                                    Producto
+                                                </th>
+                                                <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                                    Precio unidad<span class="text-xs">*</span>
+                                                </th>
+                                                <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                                    Cantidad
+                                                </th>
+                                                <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                                    Total
+                                                </th>
+                                                <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-blue-200" id="listaProductosTabla">
+                                            <!--PRODUCTOS CARRITO-->
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+                                <small class="text-xs pl-1.5 text-blue-400">*IVA incluído</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Datos envío-->
+                    <div class="bg-white border rounded-lg p-5 grid grid-cols-8 gap-8">
+                        <div class="col-span-8 lg:col-span-4">
+                            <h4 class="font-bold">Datos de envío</h4>
+                            <hr class="w-full my-3">
+                            <div class="mb-8">
+                                <div class="grid grid-cols-10 gap-3">
+                                    <div class="col-span-6 flex flex-col mb-3">
+                                        <label for="direccion" class="mb-2 text-sm">Dirección*</label>
+                                        <input type="text" name="direccion" id="direccion"
+                                            class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                                    </div>
+                                    <div class="col-span-2 flex flex-col mb-3">
+                                        <label for="piso" class="mb-2 text-sm">Piso*</label>
+                                        <input type="text" name="piso" id="piso"
+                                            class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                                    </div>
+                                    <div class="col-span-2 flex flex-col mb-3">
+                                        <label for="puerta" class="mb-2 text-sm">Puerta*</label>
+                                        <input type="text" name="puerta" id="puerta"
+                                            class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col mb-3 w-full">
+                                    <label for="mensaje" class="mb-2 text-sm">Mensaje</label>
+                                    <textarea name="mensaje" id="mensaje" cols="1" rows="5"
+                                        class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-4 col-span-8">
+                            <h4 class="font-bold">Pago</h4>
+                            <hr class="w-full my-3">
+                            <div class="mb-8">
+                                <div class="grid grid-cols-8 gap-3">
+                                    <div class="col-span-6 flex flex-col mb-3">
+                                        <label for="tarjeta" class="mb-2 text-sm">Número de tarjeta*</label>
+                                        <input type="text" name="tarjeta" id="tarjeta"
+                                            class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                                    </div>
+                                    <div class="col-span-2 flex flex-col mb-3">
+                                        <label for="cvv" class="mb-2 text-sm">CVV*</label>
+                                        <input type="text" name="cvv" id="cvv"
+                                            class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col mb-3 w-full">
+                                    <label for="caducidad" class="mb-2 text-sm">Fecha de caducidad*</label>
+                                    <input type="date" name="caducidad" id="caducidad"
+                                        class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                                </div>
+                                <div class="flex flex-col mb-3 w-full">
+                                    <label for="titular" class="mb-2 text-sm">Titular de la cuenta*</label>
+                                    <input type="text" name="titular" id="titular"
+                                        class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Ticket compra-->
+                <div class="col-span-6 lg:col-span-2 md:col-span-2">
+                    <div class="bg-white p-5 border rounded-md">
+                        <h4 class="font-bold">Resumen</h4>
+                        <hr class="w-full my-3">
+                        <div class="flex justify-between my-1.5">
+                            <p>Subtotal:</p>
+                            <p><span id="subtotal"></span>€</p>
+                        </div>
+                        <div class="flex justify-between my-1.5">
+                            <p>Envío:</p>
+                            <p><span id="envio"></span>€</p>
+                        </div>
+                        <div class="flex justify-between my-1.5">
+                            <p>Descuento:</p>
+                            <p><span id="descuento">0.00</span>€</p>
+                        </div>
+                        <hr>
+                        <div class="flex justify-between my-1.5 font-bold">
+                            <p>Total:</p>
+                            <p><span id="total"></span>€</p>
+                        </div>
+                        <div class="flex justify-between mt-5 font-bold items-center gap-2">
+                            <input type="text" name="codigo" id="codigo" placeholder="Codigo promocional"
+                                class="w-full rounded-md border border-blue-100 px-1 font-normal text-sm focus:border-blue-500 h-10 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                            <button id="aplicarCupon"
+                            class="bg-white w-fit rounded-md py-2.5 border border-indigo-600 text-indigo-600 hover:text-white px-4 hover:bg-indigo-700 duration-300 font-semibold text-sm">Aplicar</button>
+                        </div>
+                        <button id="realizarPago"
+                            class="bg-indigo-600 text-white w-full rounded-md py-2 mt-3 hover:bg-indigo-700 duration-300 font-semibold">Pagar
+                            ahora</button>
+                    </div>
+                    <img src="../../assets/gif/gif_relleno.gif" alt="Código de descuento DAILY10" class="rounded-lg mx-auto mt-5">
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <footer class="mt-24 mb-32">
+        <div class="container mx-auto lg:p-2 md:p-3 p-5">
+            <img src="../../assets/svg/logo.svg" alt="DailyGo" width="128">
+            <div class="grid grid-cols-4 gap-8 mt-8">
+                <div class="lg:col-span-1 md:col-span-1 col-span-2 flex flex-col gap-3">
+                    <p class="font-bold">Sitios</p>
+                    <a href="inicio.php">Inicio</a>
+                    <a href="promociones.html">Promociones</a>
+                    <a href="pedidos.html">Pedidos</a>
+                    <a href="perfil.html">Perfil</a>
+                </div>
+                <div class="lg:col-span-1 md:col-span-1 col-span-2 flex flex-col gap-3">
+                    <p class="font-bold">Información</p>
+                    <a href="../politica_privacidad.html" target="_blank">Política de privacidad</a>
+                    <a href="../terminos_condiciones.html" target="_blank">Términos y condiciones</a>
+                </div>
+                <div class="lg:col-span-1 md:col-span-1 col-span-2 flex flex-col gap-3">
+                    <p class="font-bold">Soporte</p>
+                    <a href="ayuda.html">Ayuda</a>
+                </div>
+            </div>
+            <hr class="my-12">
+            <div
+                class="flex flex-col lg:flex-row md:flex-row lg:justify-between md:justify-between justify-center gap-5 flex-wrap items-center">
+                <small>&copy; DailyGo 2023</small>
+                <div
+                    class="flex gap-3 flex-wrap lg:flex-row md:flex-row lg:justify-between md:justify-between justify-center">
+                    <a href="https://www.apple.com/es/app-store/">
+                        <img src="../../assets/svg/app_store_logo.svg" alt="App Store">
+                    </a>
+                    <a href="https://play.google.com/store/games?hl=es&gl=US&pli=1">
+                        <img src="../../assets/svg/google_play_logo.svg" alt="Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/global/navbar.js"></script>
+    <script src="../../js/usuarios/crear_pedido.js"></script>
+</body>
+
+</html>

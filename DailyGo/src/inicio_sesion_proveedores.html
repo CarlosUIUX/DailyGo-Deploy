@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyGo | Pedidos ultrarrápidos</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <script src="../styles/tailwind.js"></script>
+    <link rel="shortcut icon" href="../assets/svg/favicon.svg" type="image/x-icon">
+    <script src="../js/global/gestion_sesiones.js"></script>
+</head>
+<body class="font-medium min-h-screen flex justify-center items-center text-blue-800">
+    <input type="hidden" name="tipoUsuario" id="tipoUsuario" value="proveedor">
+    <div class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 w-full h-full">
+        <div class="col-span-1 bg-white flex justify-center items-center p-5 lg:p-5 md:p-8 py-16">
+            <form class="text-left">
+                <a href="registro.html">
+                    <img src="../assets/svg/logo.svg" alt="DailyGo" width="74">
+                </a>
+                <h3 class="font-bold text-blue-800 my-2">Iniciar sesión como proveedor</h3>
+                <p class="mb-10">¿No dispones de una cuenta? <a href="registro_proveedores.html" class="font-semibold text-indigo-600">Registrarse</a></p>
+                <div id="msgIncorrecto" class="hidden">
+                    <div class="mb-8 rounded-lg w-full bg-red-200 text-red-500 border border-red-500 text-center p-3">
+                        <p class="text-sm">Los datos proporcionados no son válidos. Inténtalo de nuevo</p>
+                    </div>
+                </div>
+                <div class="flex flex-col mb-5">
+                    <label for="correo" class="mb-2">Correo electrónico</label>
+                    <input type="email" name="correo" id="correo"
+                        class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                        placeholder="ejemplo@correo.es">
+                </div>
+                <div class="flex flex-col mb-5">
+                    <label for="contrasena" class="mb-2">Contraseña</label>
+                    <input type="password" name="contrasena" id="contrasena"
+                        class="w-full rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                        placeholder="********">
+                </div>
+                <input type="button" id="btnEntrar"
+                    class="duration-300 text-white bg-indigo-700 rounded-md mt-3 font-semibold hover:bg-indigo-800 py-2 w-full cursor-pointer"
+                    value="Entrar" />
+            </form>
+        </div>
+        <div class="col-span-1 hidden lg:block md:block min-h-screen" id="sesion-proveedor">
+        </div>
+    </div>
+    <script src="../js/global/inicio_sesion.js"></script>
+</body>
+</html>

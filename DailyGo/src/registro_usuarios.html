@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyGo | Pedidos ultrarrápidos</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <script src="../styles/tailwind.js"></script>
+    <link rel="shortcut icon" href="../assets/svg/favicon.svg" type="image/x-icon">
+    <script src="../js/global/gestion_sesiones.js"></script>
+</head>
+
+<body class="font-medium min-h-screen flex justify-center items-center text-blue-800">
+    <div class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 w-full h-full">
+        <div class="col-span-1 bg-white flex justify-center items-center px-5 py-16">
+            <form class="text-left w-full lg:w-3/4 md:w-3/4">
+                <a href="registro.html">
+                    <img src="../assets/svg/logo.svg" alt="DailyGo" width="74">
+                </a>
+                <h3 class="font-bold text-blue-800 my-2">Registrarse como usuario</h3>
+                <p class="mb-10">¿Ya dispones de una cuenta? <a href="inicio_sesion_usuarios.html"
+                        class="font-semibold text-indigo-600">Inicia sesión</a></p>
+                <div id="errorCrear" class="hidden">
+                    <div class="mb-8 rounded-lg w-full bg-red-200 text-red-500 border border-red-500 text-center p-3">
+                        <p class="text-sm">No se ha podido crear su cuenta. Inténtelo de nuevo</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-3 md:grid-cols-2 gap-2 w-full">
+                    <div class="col-span-2 lg:col-span-1 md:lg:col-span-2 flex flex-col mb-8">
+                        <label for="nombre" class="mb-2">Nombre</label>
+                        <input type="text" name="nombre" id="nombre"
+                            class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                            placeholder="Tu nombre">
+                        <div class="hidden" id="msgNombre">
+                            <small class="text-xs text-red-500 mt-2">Escriba un nombre válido</small>
+                        </div>
+                    </div>
+                    <div class="col-span-2 lg:col-span-2 md:lg:col-span-2 flex flex-col mb-8">
+                        <label for="apellidos" class="mb-2">Apellidos</label>
+                        <input type="text" name="apellidos" id="apellidos"
+                            class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                            placeholder="Tu apellido o apellidos">
+                        <div class="hidden" id="msgApellidos">
+                            <small class="text-xs text-red-500 mt-2">Escriba un apellido o apellidos válidos</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col mb-8">
+                    <label for="telefono" class="mb-2">Teléfono</label>
+                    <input type="tel" name="telefono" id="telefono"
+                        class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                        placeholder="Tu número de teléfono">
+                    <div class="hidden" id="msgTelefono">
+                        <small class="text-xs text-red-500 mt-2">Escriba un teléfono válido para
+                            España</small>
+                    </div>
+                    <div class="hidden" id="msgTelefonoExiste">
+                        <small class="text-xs text-red-500 mt-2">Ese teléfono ya está en
+                            uso</small>
+                    </div>
+                </div>
+                <div class="flex flex-col mb-8">
+                    <label for="correo" class="mb-2">Correo electrónico</label>
+                    <input type="email" name="correo" id="correo"
+                        class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                        placeholder="ejemplo@correo.es">
+                    <div class="hidden" id="msgCorreo">
+                        <small class="text-xs text-red-500 mt-2">Escriba un correo electrónico válido</small>
+                    </div>
+                    <div class="hidden" id="msgCorreoExiste">
+                        <small class="text-xs text-red-500 mt-2">Ese correo ya está en
+                            uso</small>
+                    </div>
+                </div>
+                <div class="flex flex-col mb-8">
+                    <label for="contrasena" class="mb-2">Contraseña</label>
+                    <input type="password" name="contrasena" id="contrasena"
+                        class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                        placeholder="********">
+                    <div class="hidden" id="msgContrasena">
+                        <small class="text-xs text-red-500 mt-2">La contraseña debe contener una
+                            mayúscula y un número. Mínimo 8 caracteres y máximo 16</small>
+                    </div>
+                </div>
+                <div class="flex flex-col mb-8">
+                    <label for="confirmarContrasena" class="mb-2">Confirmar contraseña</label>
+                    <input type="password" name="confirmarContrasena" id="confirmarContrasena"
+                        class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                        placeholder="********">
+                    <div class="hidden" id="msgConfirmarContrasena">
+                        <small class="text-xs text-red-500 mt-2">No coincide la
+                            contraseña</small>
+                    </div>
+                </div>
+                <div class="flex flex-col items-start mb-8">
+                    <div class="flex gap-2 items-start">
+                        <input type="checkbox" name="terminos" id="terminos" class="mt-1">
+                        <p class="text-sm">Acepto los <a class="font-semibold underline" target="_blank" href="terminos_condiciones.html">términos y condiciones</a> junto a la <a class="font-semibold underline" target="_blank" href="politica_privacidad.html">política de privacidad</a>  de DailyGo</p>
+                    </div>
+                    <div class="hidden" id="msgTerminos">
+                        <small class="text-xs text-red-500 mt-2">Debes aceptar los términos y condiciones</small>
+                    </div>
+                </div>
+                <input type="button" id="crearCuenta"
+                    class="duration-300 text-white bg-indigo-700 rounded-md mt-3 font-semibold hover:bg-indigo-800 py-2 w-full cursor-pointer"
+                    value="Crear cuenta" />
+            </form>
+        </div>
+        <div class="col-span-1 hidden lg:block md:block min-h-screen" id="registro-usuario">
+        </div>
+    </div>
+    <script src="../js/usuarios/registro_usuarios.js"></script>
+</body>
+
+</html>

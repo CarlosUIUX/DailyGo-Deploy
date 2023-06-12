@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyGo | Pedidos ultrarrápidos</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <script src="../styles/tailwind.js"></script>
+    <link rel="shortcut icon" href="../assets/svg/favicon.svg" type="image/x-icon">
+    <script src="../js/global/gestion_sesiones.js"></script>
+</head>
+<body id="body-index" class="font-medium min-h-screen flex justify-center items-center text-blue-800">
+    <div class="container mx-auto">
+        <div class="bg-white w-full rounded-none lg:rounded-lg md:rounded-lg mx-auto p-8 lg:p-16 md:p-16 shadow-lg">
+            <div class="mb-8 flex flex-col items-center">
+                <img src="../assets/svg/logo.svg" alt="DailyGo" width="72">
+                <h2 class="font-bold text-blue-900 mt-2">¡Bienvenido!</h2>
+                <p class="mt-2 font-semibold text-blue-900">Selecciona tu perfil</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-3">
+                <a href="inicio_sesion_proveedores.html"  class="col-span-1 rounded-lg border border-blue-100/50 bg-white duration-300 shadow p-8 flex flex-col justify-center items-center text-center cursor-pointer hover:shadow-lg">
+                    <img src="../assets/svg/inicio_registro/proveedor.svg" alt="">
+                    <h4 class="text-indigo-600 font-bold mt-3">Proveedor</h4>
+                </a>
+                <a href="inicio_sesion_usuarios.html"  class="col-span-1 rounded-lg border border-blue-100/50 bg-white duration-300 shadow p-8 flex flex-col justify-center items-center text-center cursor-pointer hover:shadow-lg">
+                    <img src="../assets/svg/inicio_registro/usuario.svg" alt="">
+                    <h4 class="text-indigo-600 font-bold mt-3">Usuario</h4>
+                </a>
+                <a href="inicio_sesion_riders.html" class="col-span-1 rounded-lg border border-blue-100/50 bg-white duration-300 shadow p-8 flex flex-col justify-center items-center text-center cursor-pointer hover:shadow-lg">
+                    <img src="../assets/svg/inicio_registro/rider.svg" alt="">
+                    <h4 class="text-indigo-600 font-bold mt-3">Rider</h4>
+                </a>
+            </div>
+            <p class="text-center text-sm mt-5">¿No dispones de una cuenta? <a href="registro.html" class="font-semibold text-indigo-600">Registrarse</a></p>
+        </div>
+    </div>
+</body>
+</html>

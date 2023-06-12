@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyGo | Pedidos ultrarrápidos</title>
+    <script src="../../styles/tailwind.js"></script>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="shortcut icon" href="../../assets/svg/favicon.svg" type="image/x-icon">
+</head>
+
+<body class="font-medium text-blue-800 pb-36 min-vh-100">
+    <!--NAVBAR-->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between">
+                <a href="inicio.html" class="flex items-center py-5 px-2">
+                    <img src="../../assets/svg/logo.svg" alt="DailyGo" width="110">
+                </a>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="pedidos.html">Pedidos</a>
+                    <a href="perfil.html">Perfil</a>
+                </div>
+
+
+                <!-- Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class=" w-6 h-6" x-show="!showMenu" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú móvil -->
+        <div class="hidden mobile-menu">
+            <div class="flex flex-col justify-center items-center">
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="pedidos.html">Pedidos</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="perfil.html">Perfil</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="mt-24 p-5 lg:p-3 md:p-5" id="info-ayuda">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap gap-5 justify-between">
+                <h3 class="font-bold">Configura tu perfil</h3>
+                <input type="button" id="btnCerrarSesion" class="duration-300 text-white bg-red-500 rounded-md font-semibold hover:bg-red-600 py-2 px-3 cursor-pointer" value="Cerrar sesión"></input>
+            </div>
+            
+            <hr class="mt-2 mb-5">
+            <div class="grid lg:grid-cols-2 grid-cols-1 gap-4 bg-white border rounded-lg p-5">
+                <div>
+                    <h4 class="font-bold mb-5">Actualizar datos personales</h4>
+                    <div id="correctoDatos" class="hidden">
+                        <div class="mb-8 rounded-lg w-full bg-green-200 text-green-500 border border-green-500 text-center p-3">
+                            <p class="text-sm">Se ha actualizado correctamente</p>
+                        </div>
+                    </div>
+                    <div id="incorrectoDatos" class="hidden">
+                        <div class="mb-8 rounded-lg w-full bg-red-200 text-red-500 border border-red-500 text-center p-3">
+                            <p class="text-sm">No se ha actualizado correctamente. Inténtalo de nuevo</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-5">
+                        <label for="nombre" class="mb-2">Nombre:</label>
+                        <div class="flex gap-2">
+                            <input type="text" name="nombre" id="nombre"
+                            class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                            <input type="button" id="btnNombre" class="duration-300 text-white bg-green-500 rounded-md font-semibold hover:bg-green-600 py-2 px-3 cursor-pointer" value="✅"></input>
+                        </div>
+                        <div class="hidden" id="msgNombre">
+                            <small class="text-xs text-red-500 mt-2">Escriba un nombre válido</small>
+                        </div>    
+                    </div>
+                    <div class="flex flex-col mb-5">
+                        <label for="apellidos" class="mb-2">Apellidos:</label>
+                        <div class="flex gap-2">
+                            <input type="text" name="apellidos" id="apellidos"
+                            class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                            <input type="button" id="btnApellidos" class="duration-300 text-white bg-green-500 rounded-md font-semibold hover:bg-green-600 py-2 px-3 cursor-pointer" value="✅"></input>
+                        </div>
+                        <div class="hidden" id="msgApellidos">
+                            <small class="text-xs text-red-500 mt-2">Escriba apelidos válidos</small>
+                        </div>    
+                    </div>
+                    <div class="flex flex-col mb-5">
+                        <label for="telefono" class="mb-2">Teléfono:</label>
+                        <div class="flex gap-2">
+                            <input type="text" name="telefono" id="telefono"
+                            class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                            <input type="button" id="btnTelefono" class="duration-300 text-white bg-green-500 rounded-md font-semibold hover:bg-green-600 py-2 px-3 cursor-pointer" value="✅"></input>
+                        </div>
+                        <div class="hidden" id="msgTelefono">
+                            <small class="text-xs text-red-500 mt-2">Escriba un teléfono válido</small>
+                        </div>    
+                        <div class="hidden" id="msgTelefonoExiste">
+                            <small class="text-xs text-red-500 mt-2">Ese teléfono está en uso</small>
+                        </div>  
+                    </div>
+                    <div class="flex flex-col mb-5">
+                        <label for="correo" class="mb-2">Correo:</label>
+                        <div class="flex gap-2">
+                            <input type="text" name="correo" id="correo"
+                            class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                            <input type="button" id="btnCorreo" class="duration-300 text-white bg-green-500 rounded-md font-semibold hover:bg-green-600 py-2 px-3 cursor-pointer" value="✅"></input>
+                        </div>
+                        <div class="hidden" id="msgCorreo">
+                            <small class="text-xs text-red-500 mt-2">Escriba un correo válido</small>
+                        </div>
+                        <div class="hidden" id="msgCorreoExiste">
+                            <small class="text-xs text-red-500 mt-2">Ese correo está en uso</small>
+                        </div>  
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg border rounded-lg p-5 lg:mt-0 mt-12">
+                    <h4 class="font-bold mb-1.5">Actualizar contraseña</h4>
+                    <form class="mt-5">
+                        <div id="correctoContrasena" class="hidden">
+                            <div class="mb-8 rounded-lg w-full bg-green-200 text-green-500 border border-green-500 text-center p-3">
+                                <p class="text-sm">Se ha actualizado correctamente tu contaseña</p>
+                            </div>
+                        </div>
+                        <div id="incorrectoContrasena" class="hidden">
+                            <div class="mb-8 rounded-lg w-full bg-red-200 text-red-500 border border-red-500 text-center p-3">
+                                <p class="text-sm">Esa contaseña no es válida. Inténtalo de nuevo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col mb-8">
+                            <label for="contrasena" class="mb-2">Contraseña actual</label>
+                            <input type="password" name="contrasena" id="contrasena"
+                                class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                                placeholder="********">
+                        </div>
+                        <div class="flex flex-col mb-8">
+                            <label for="contrasenaNueva" class="mb-2">Contraseña nueva</label>
+                            <input type="password" name="contrasenaNueva" id="contrasenaNueva"
+                                class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300"
+                                placeholder="********">
+                            <div class="hidden" id="msgContrasenaNueva">
+                                <small class="text-xs text-red-500 mt-2">La contraseña debe contener una
+                                    mayúscula y un número. Mínimo 8 caracteres y máximo 16</small>
+                            </div>
+                        </div>
+                        <input type="button" id="btnContrasena"
+                            class="duration-300 text-white bg-indigo-700 rounded-md mt-3 font-semibold hover:bg-indigo-800 py-2 w-full cursor-pointer"
+                            value="Actualizar contraseña" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="mt-24">
+        <div class="container mx-auto lg:p-2 md:p-3 p-5">
+            <img src="../../assets/svg/logo.svg" alt="DailyGo" width="128">
+            <div class="grid grid-cols-4 gap-8 mt-8">
+                <div class="lg:col-span-1 md:col-span-1 col-span-2 flex flex-col gap-3">
+                    <p class="font-bold">Sitios</p>
+                    <a href="inicio.html">Inicio</a>
+                    <a href="pedidos.html">Pedidos</a>
+                    <a href="perfil.html">Perfil</a>
+                </div>
+                <div class="lg:col-span-1 md:col-span-1 col-span-2 flex flex-col gap-3">
+                    <p class="font-bold">Información</p>
+                    <a href="../politica_privacidad.html" target="_blank">Política de privacidad</a>
+                    <a href="../terminos_condiciones.html" target="_blank">Términos y condiciones</a>
+                </div>
+            </div>
+            <hr class="my-12">
+            <div
+                class="flex flex-col lg:flex-row md:flex-row lg:justify-between md:justify-between justify-center gap-5 flex-wrap items-center">
+                <small>&copy; DailyGo 2023</small>
+                <div
+                    class="flex gap-3 flex-wrap lg:flex-row md:flex-row lg:justify-between md:justify-between justify-center">
+                    <a href="https://www.apple.com/es/app-store/">
+                        <img src="../../assets/svg/app_store_logo.svg" alt="App Store">
+                    </a>
+                    <a href="https://play.google.com/store/games?hl=es&gl=US&pli=1">
+                        <img src="../../assets/svg/google_play_logo.svg" alt="Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../../js/global/navbar.js"></script>
+    <script src="../../js/usuarios/carrito.js"></script>
+    <script src="../../js/riders/actualizar_datos_riders.js"></script>
+    <script src="../../js/global/cerrar_sesion.js"></script>
+</body>
+
+</html>

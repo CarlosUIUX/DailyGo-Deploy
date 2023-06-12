@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyGo | Pedidos ultrarrápidos</title>
+    <script src="../../styles/tailwind.js"></script>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="shortcut icon" href="../../assets/svg/favicon.svg" type="image/x-icon">
+</head>
+
+<body class="font-medium text-white bg-blue-900">
+    <nav class="bg-blue-800 text-white shadow-lg fixed w-full z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between">
+                <a href="inicio.html" class="flex items-center py-4 px-2">
+                    <img src="../../assets/svg/logo_white.svg" alt="DailyGo">
+                </a>
+                <div class="hidden md:flex items-center gap-3">
+                    <a href="consultas.html">Consultas</a>
+                    <a href="pedidos.html">Pedidos</a>
+                    <a href="proveedores.html">Proveedores</a>
+                    <a href="riders.html">Riders</a>
+                    <a href="clientes.html">Clientes</a>
+                    <a href="productos.html">Productos</a>
+                    <button id="btnCerrarSesion" class="bg-red-500 hover:bg-red-600 duration-300 rounded p-1">
+                        <img src="../../assets/svg/exit.svg" width="24" alt="Cerrar sesión">
+                    </button>
+                </div>
+
+                <!-- Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class=" w-6 h-6" x-show="!showMenu" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú móvil -->
+        <div class="hidden mobile-menu">
+            <div class="flex flex-col justify-center items-center">
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-white hover:text-blue-800 focus:text-blue-800 focus:bg-white">
+                    <a href="consultas.html">Consultas</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-white hover:text-blue-800 focus:text-blue-800 focus:bg-white">
+                    <a href="pedidos.html">Pedidos</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-white hover:text-blue-800 focus:text-blue-800 focus:bg-white">
+                    <a href="proveedores.html">Proveedores</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-white hover:text-blue-800 focus:text-blue-800 focus:bg-white">
+                    <a href="riders.html">Riders</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-white hover:text-blue-800 focus:text-blue-800 focus:bg-white">
+                    <a href="clientes.html">Clientes</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-white hover:text-blue-800 focus:text-blue-800 focus:bg-white">
+                    <a href="riders.html">Clientes</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-white hover:text-blue-800 focus:text-blue-800 focus:bg-white">
+                    <button id="btnCerrarSesion" class="bg-red-500 hover:bg-red-600 duration-300 rounded px-3 py-2">Cerrar sesión</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="lg:py-24 md:py-16 py-12">
+        <div class="container mx-auto p-5 lg:p-0 md:p-5">
+            <h3 class="font-bold">Gestión de pedidos</h3>
+            <hr class="my-5">
+            <div class="flex gap-3 flex-wrap mb-5">
+                <input type="text" id="buscar" value="" class="mt-5 bg-blue-700 border border-blue-400 rounded px-3 py-2 focus:border-blue-100 lg:w-3/5 md:w-3/5 w-full" placeholder="Buscar por correo del cliente">
+                <select name="tipo" id="tipo" class="mt-5 bg-blue-700 border border-blue-400 rounded px-3 py-2 focus:border-blue-100 lg:w-1/5 md:w-1/5 w-full">
+                    <option value="cliente">Por correo del cliente</option>
+                    <option value="rider">Por correo del rider</option>
+                    <option value="proveedor">Por razón social del proveedor</option>
+                </select>
+                <input type="date" id="fecha" class="mt-5 bg-blue-700 border border-blue-400 rounded px-3 py-2 focus:border-blue-100 lg:w-1/5 md:w-1/5 w-full">
+                <button id="limpiarCampos" class="mt-5 bg-yellow-500 rounded px-3 py-2 hover:bg-yellow-600 duration-300 text-blue-800 font-semibold lg:w-fit md:w-fit w-full">Limpiar campos</button>
+            </div>
+
+            <div class="hidden" id="verProductos">
+                <div class="bg-white p-5 rounded text-blue-800">
+                    <div class="flex justify-between items-center flex-wrap gap-3">
+                        <div>
+                            <h4 class="font-bold" id="docPedido"></h4>
+                            <p id="docDireccion" class="text-sm"></p>
+                        </div>
+                        <p id="docEstado"></p>
+                    </div>
+                    
+                    <hr class="mb-3 mt-2">
+                    <div class="flex gap-4 flex-wrap my-5">
+                        <div class="flex gap-1">
+                            <img src="../../assets/svg/inicio_registro/proveedor.svg" width="18" alt="Logo Proveedor">
+                            <p class="text-indigo-600 text-sm" id="docProveedor"></p>
+                        </div>
+                        <div class="flex gap-1">
+                            <img src="../../assets/svg/inicio_registro/usuario.svg" width="18" alt="Logo Usuario">
+                            <p class="text-indigo-600 text-sm" id="docCliente"></p>
+                        </div>
+                        <div class="flex gap-1">
+                            <img src="../../assets/svg/inicio_registro/rider.svg" width="18" alt="Logo Rider">
+                            <p class="text-indigo-600 text-sm" id="docRider"></p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 gap-3">
+                        <div id="docCarrito" class="lg:col-span-3 md:col-span-2 col-span-4 grid lg:grid-cols-3 md:grid-cols-1 grid-cols-1 gap-2">
+                            
+                        </div>
+                        <div class="lg:col-span-1 md:col-span-2 col-span-4 bg-blue-100/50 rounded p-3 text-sm">
+                            <p class="font-bold">Mensaje:</p>
+                            <p id="docMensaje"></p>
+                        </div>
+                    </div>
+                    <button class="mt-3 bg-indigo-600 text-white font-semibold px-3 py-2 rounded-md hover:bg-indigo-700 duration-300" id="ocultarPedido">Ocultar pedido</button>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto text-white mt-5">
+                <div class="inline-block min-w-full align-middle">
+                    <div class="overflow-hidden md:rounded-lg">
+                        <table class="min-w-full divide-y divide-blue-100 table-auto">
+                            <thead class="bg-blue-700 text-left table-auto">
+                                <tr>
+                                    <th class="p-4 text-sm font-semibold">
+                                        ID Pedido
+                                    </th>
+                                    <th class="p-4 text-sm font-semibold">
+                                        Cliente
+                                    </th>
+                                    <th class="p-4 text-sm font-semibold">
+                                        Rider
+                                    </th>
+                                    <th class="p-4 text-sm font-semibold">
+                                        Proveedor
+                                    </th>
+                                    <th class="p-4 text-sm font-semibold">
+                                        Fecha
+                                    </th>
+                                    <th class="p-4 text-sm font-semibold">
+                                        Estado
+                                    </th>
+                                    <th class="p-4 text-sm font-semibold">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-blue-800/50 divide-y divide-blue-500 table-auto" id="listadoPedidos">
+                                <!-- LISTADO -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="../../js/administrador/gestion_pedidos.js"></script>
+<script src="../../js/global/cerrar_sesion.js"></script>
+<script src="../../js/administrador/gestion_sesiones.js"></script>
+<script src="../../js/global/navbar.js"></script>
+</html>

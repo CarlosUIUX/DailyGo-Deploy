@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyGo | Pedidos ultrarrápidos</title>
+    <script src="../../styles/tailwind.js"></script>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="shortcut icon" href="../../assets/svg/favicon.svg" type="image/x-icon">
+    <script src="../../js/proveedores/gestion_sesiones.js"></script>
+</head>
+
+<body class="font-medium text-blue-800 pb-36">
+    <!--NAVBAR-->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between">
+                <a href="inicio.html" class="flex items-center py-5 px-2">
+                    <img src="../../assets/svg/logo.svg" alt="DailyGo" width="110">
+                </a>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="nuevo_producto.html">Productos</a>
+                    <a href="pedidos.html">Pedidos</a>
+                    <a href="perfil.html" id="imgPerfil" class="w-10 h-10 rounded-full bg-blue-100 border"></a>
+                </div>
+
+                <!-- Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class=" w-6 h-6" x-show="!showMenu" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú móvil -->
+        <div class="hidden mobile-menu">
+            <div class="flex flex-col justify-center items-center">
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="productos.html">Productos</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="pedidos.html">Pedidos</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="perfil.html">Perfil</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-indigo-700 lg:pt-36 lg:pb-20 md:pt-28 md:pb-18 pt-20 pb-8" id="hero-proveedor">
+        <div class="container mx-auto flex flex-col p-5 lg:p-0 md:p-5">
+            <div class="flex items-center gap-4">
+                <div class="w-20 h-20 bg-white rounded-full lg:flex md:flex hidden" id="logoProveedor">
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold">¡Hola <span id="razonProv"></span>!</h4>
+                    <h2 class="font-bold text-white">Gestiona tus productos</h2>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="mt-12 p-5 lg:p-3 md:p-5" id="info-ayuda">
+        <div class="container mx-auto">
+            <div class="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5">
+                <div class="p-5 bg-white shadow-lg rounded">
+                    <h4 class="font-bold">Modificar productos existentes 🖌️</h4>
+                    <hr class="my-5">
+                    <div id='mostrarDatosProductos' class="rounded w-fit border p-4 mb-5">
+                        <select id="productosIniciales">
+                        </select>
+                    </div>
+                    <div id="correctoDatos" class="hidden">
+                        <div
+                            class="mb-8 rounded-lg w-full bg-green-200 text-green-500 border border-green-500 text-center p-3">
+                            <p class="text-sm">Se ha actualizado correctamente</p>
+                        </div>
+                    </div>
+                    <div id="incorrectoDatos" class="hidden">
+                        <div
+                            class="mb-8 rounded-lg w-full bg-red-200 text-red-500 border border-red-500 text-center p-3">
+                            <p class="text-sm">No se ha actualizado correctamente. Inténtalo de nuevo</p>
+                        </div>
+                    </div>
+                    <div id="ocultoImagen" class="hidden">
+                        <label for="img" class="pb-3">Imagen:</label>
+                        <div class="flex gap-2 mt-2 mb-4">
+                            <input type="file" name="imagenSubidaUsuario" id="imagenSubidaUsuario"
+                                class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                            <input type="button" id="btnImagen"
+                                class="duration-300 text-white bg-green-500 rounded-md font-semibold hover:bg-green-600 py-2 px-3 cursor-pointer"
+                                value="✅"></input>
+                            <div class="hidden" id="msgImagen">
+                                <small class="text-xs text-red-500 mt-2">Solo admitimos imagenes en jpg</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ocultoNombre" class="hidden">
+                        <label for="nombreProducto">Nombre:</label>
+                        <div class="flex gap-2 mb-4 mt-2">
+                            <input type="input" name="nombreProducto" id="nombreProducto"
+                                class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                            <input type="button" id="btnNombreProducto"
+                                class="duration-300 text-white bg-green-500 rounded-md font-semibold hover:bg-green-600 py-2 px-3 cursor-pointer"
+                                value="✅"></input>
+                        </div>
+                        <div class="hidden" id="msgNombreProducto">
+                            <small class="text-xs text-red-500 mt-2">Nombre incorrecto</small>
+                        </div>
+                    </div>
+                    <div id="ocultoDinero" class="hidden">
+                        <label for="precioUnitario">Precio unitario:</label>
+                        <div class="flex gap-2 mb-4 mt-2">
+                            <input type="input" name="precioUnitario" id="precioUnitario"
+                                class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                            <input type="button" id="btnPrecioUnitario"
+                                class="duration-300 text-white bg-green-500 rounded-md font-semibold hover:bg-green-600 py-2 px-3 cursor-pointer"
+                                value="✅"></input>
+                        </div>
+                        <div class="hidden" id="msgPrecioUnitario">
+                            <small class="text-xs text-red-500 mt-2">Precio incorrecto</small>
+                        </div>
+                    </div>
+                    <div id="ocultoBorrar" class="hidden">
+                        <input type="button" id="btnBorrarProducto"
+                            class="mt-3 w-full duration-300 text-white bg-red-500 rounded-md font-semibold hover:bg-red-600 py-2 px-3 cursor-pointer"
+                            value="Borrar producto">
+                    </div>
+                </div>
+                <div class="p-5 bg-white shadow-lg rounded">
+                    <h4 class="font-bold">Agregar nuevo producto ➕</h4>
+                    <hr class="my-5">
+                    <div id="correctoDatosInsert" class="hidden">
+                        <div
+                            class="mb-8 rounded-lg w-full bg-green-200 text-green-500 border border-green-500 text-center p-3">
+                            <p class="text-sm">Se ha añadido correctamente</p>
+                        </div>
+                    </div>
+                    <div id="incorrectoDatosInsert" class="hidden">
+                        <div
+                            class="mb-8 rounded-lg w-full bg-red-200 text-red-500 border border-red-500 text-center p-3">
+                            <p class="text-sm">No se ha añadido correctamente. Inténtalo de nuevo</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2 mb-4">
+                        <label for="nuevoNombre">Nombre:</label>
+                        <input type="input" name="nuevoNombre" id="nuevoNombre"
+                            class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                    </div>
+                    <div class="hidden" id="msgNombreNuevoProducto">
+                        <small class="text-xs text-red-500 mt-2">Nombre incorrecto</small>
+                    </div>
+                    <div class="flex flex-col gap-2 mb-4">
+                        <label for="nuevoPrecio">Precio:</label>
+                        <input type="input" name="nuevoPrecio" id="nuevoPrecio"
+                            class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                    </div>
+                    <div class="hidden" id="msgNuevoProductoPrecio">
+                        <small class="text-xs text-red-500 mt-2">Precio incorrecto</small>
+                    </div>
+                    <div class="mb-4">
+                        <label for="nuevaImg">Imagen:</label>
+                        <div class="flex gap-2 mt-2">
+                            <input type="file" name="nuevaImg" id="nuevaImg"
+                                class="rounded-md border border-blue-100 focus:border-blue-500 p-2 bg-blue-100/10 focus:bg-blue-100/30 duration-300">
+                        </div>
+                        
+                        <div class="hidden" id="msgImagenNueva">
+                            <small class="text-xs text-red-500 mt-2">Solo admitimos imagenes en jpg</small>
+                        </div>
+                    </div>
+                    <input type="button" id="btnCrearProducto"
+                        class="mt-3 w-full duration-300 text-white bg-green-500 rounded-md font-semibold hover:bg-green-600 py-2 px-3 cursor-pointer"
+                        value="Añadir producto">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <footer class="mt-24">
+        <div class="container mx-auto lg:p-2 md:p-3 p-5">
+            <img src="../../assets/svg/logo.svg" alt="DailyGo" width="128">
+            <div class="grid grid-cols-4 gap-8 mt-8">
+                <div class="lg:col-span-1 md:col-span-1 col-span-2 flex flex-col gap-3">
+                    <p class="font-bold">Sitios</p>
+                    <a href="inicio.html">Inicio</a>
+                    <a href="pedidos.html">Pedidos</a>
+                    <a href="nuevo_producto.html">Productos</a>
+                    <a href="perfil.html">Perfil</a>
+                </div>
+                <div class="lg:col-span-1 md:col-span-1 col-span-2 flex flex-col gap-3">
+                    <p class="font-bold">Información</p>
+                    <a href="../politica_privacidad.html" target="_blank">Política de privacidad</a>
+                    <a href="../terminos_condiciones.html" target="_blank">Términos y condiciones</a>
+                </div>
+            </div>
+            <hr class="my-12">
+            <div
+                class="flex flex-col lg:flex-row md:flex-row lg:justify-between md:justify-between justify-center gap-5 flex-wrap items-center">
+                <small>&copy; DailyGo 2023</small>
+                <div
+                    class="flex gap-3 flex-wrap lg:flex-row md:flex-row lg:justify-between md:justify-between justify-center">
+                    <a href="https://www.apple.com/es/app-store/">
+                        <img src="../../assets/svg/app_store_logo.svg" alt="App Store">
+                    </a>
+                    <a href="https://play.google.com/store/games?hl=es&gl=US&pli=1">
+                        <img src="../../assets/svg/google_play_logo.svg" alt="Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../../js/proveedores/modificar_productos.js"></script>
+    <script src="../../js/global/navbar.js"></script>
+</body>
+
+</html>

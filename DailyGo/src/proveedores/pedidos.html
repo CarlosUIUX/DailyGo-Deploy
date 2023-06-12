@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyGo | Pedidos ultrarrápidos</title>
+    <script src="../../styles/tailwind.js"></script>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <script src="../../js/proveedores/gestion_sesiones.js"></script>
+    <link rel="shortcut icon" href="../../assets/svg/favicon.svg" type="image/x-icon">
+</head>
+
+<body class="font-medium text-blue-800 pb-36 min-vh-100">
+    <!--NAVBAR-->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between">
+                <a href="inicio.html" class="flex items-center py-5 px-2">
+                    <img src="../../assets/svg/logo.svg" alt="DailyGo" width="110">
+                </a>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="nuevo_producto.html">Productos</a>
+                    <a href="pedidos.html">Pedidos</a>
+                    <a href="perfil.html" id="imgPerfil" class="w-10 h-10 rounded-full bg-blue-100 border"></a>
+                </div>
+
+
+                <!-- Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class=" w-6 h-6" x-show="!showMenu" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú móvil -->
+        <div class="hidden mobile-menu">
+            <div class="flex flex-col justify-center items-center">
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="nuevo_producto.html">Productos</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="pedidos.html">Pedidos</a>
+                </div>
+                <div
+                    class="w-full cursor-pointer text-center py-4 duration-300 hover:bg-blue-900 hover:text-white focus:text-white focus:bg-blue-800">
+                    <a href="perfil.html">Perfil</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <main class="mt-24 p-5 lg:p-3 md:p-5 min-h-screen" style="min-height: 100vh !important">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap gap-5 justify-between">
+                <h3 class="font-bold">Historial de pedidos por producto</h3>
+            </div>
+            
+            <hr class="mt-2 mb-5">
+            
+            <div class="flex flex-col">
+                <small>Ordenar por fecha:</small>
+                <input type="date" id="fecha" class="border p-2 rounded-md mb-5 w-fit mt-2">
+            </div>
+            
+            <div class="overflow-x-auto">
+                <div class="inline-block min-w-full align-middle">
+                    <div class="overflow-hidden border border-blue-100 md:rounded-lg">
+                        <table class="min-w-full divide-y divide-blue-100">
+                            <thead class="bg-blue-100/20 text-left">
+                                <tr>
+                                    <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                        ID Pedido
+                                    </th>
+                                    <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                        Producto
+                                    </th>
+                                    <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                        Cantidad
+                                    </th>
+                                    <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                        Cliente
+                                    </th>
+                                    <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                        Rider
+                                    </th>
+                                    <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                        Fecha
+                                    </th>
+                                    <th scope="col" class="p-4 text-sm font-semibold text-blue-800">
+                                        Estado
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-blue-200" id="historialPedidos">
+                                <!-- LISTADO DE PEDIDOS REALIZADOS -->
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="mt-24z">
+        <div class="container mx-auto lg:p-2 md:p-3 p-5">
+            <img src="../../assets/svg/logo.svg" alt="DailyGo" width="128">
+            <div class="grid grid-cols-4 gap-8 mt-8">
+                <div class="lg:col-span-1 md:col-span-1 col-span-2 flex flex-col gap-3">
+                    <p class="font-bold">Sitios</p>
+                    <a href="inicio.html">Inicio</a>
+                    <a href="pedidos.html">Pedidos</a>
+                    <a href="nuevo_producto.html">Productos</a>
+                    <a href="perfil.html">Perfil</a>
+                </div>
+                <div class="lg:col-span-1 md:col-span-1 col-span-2 flex flex-col gap-3">
+                    <p class="font-bold">Información</p>
+                    <a href="../politica_privacidad.html" target="_blank">Política de privacidad</a>
+                    <a href="../terminos_condiciones.html" target="_blank">Términos y condiciones</a>
+                </div>
+            </div>
+            <hr class="my-12">
+            <div
+                class="flex flex-col lg:flex-row md:flex-row lg:justify-between md:justify-between justify-center gap-5 flex-wrap items-center">
+                <small>&copy; DailyGo 2023</small>
+                <div
+                    class="flex gap-3 flex-wrap lg:flex-row md:flex-row lg:justify-between md:justify-between justify-center">
+                    <a href="https://www.apple.com/es/app-store/">
+                        <img src="../../assets/svg/app_store_logo.svg" alt="App Store">
+                    </a>
+                    <a href="https://play.google.com/store/games?hl=es&gl=US&pli=1">
+                        <img src="../../assets/svg/google_play_logo.svg" alt="Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../../js/proveedores/historial_pedidos.js"></script>
+    <script src="../../js/global/navbar.js"></script>
+</body>
+
+</html>
